@@ -8,18 +8,18 @@ namespace VaderSharp
     {
         #region Constants
 
-        private const double BIncr = 0.293;
-        private const double BDecr = -0.293;
-        private const double CIncr = 0.733;
-        private const double NScalar = -0.74;
+        public const double BIncr = 0.293;
+        public const double BDecr = -0.293;
+        public const double CIncr = 0.733;
+        public const double NScalar = -0.74;
 
-        private static readonly string[] PuncList = new string[]
+        public static readonly string[] PuncList = new string[]
         {
             ".", "!", "?", ",", ";", ":", "-", "'", "\"","!!", "!!!",
             "??", "???", "?!?", "!?!", "?!?!", "!?!?"
         };
 
-        private static readonly string[] Negate = new string[]
+        public static readonly string[] Negate = new string[]
         {
             "aint", "arent", "cannot", "cant", "couldnt", "darent", "didnt", "doesnt",
             "ain't", "aren't", "can't", "couldn't", "daren't", "didn't", "doesn't",
@@ -31,7 +31,7 @@ namespace VaderSharp
             "without", "wont", "wouldnt", "won't", "wouldn't", "rarely", "seldom", "despite"
         };
 
-        private static readonly Dictionary<string, double> BoosterDict = new Dictionary<string, double>
+        public static readonly Dictionary<string, double> BoosterDict = new Dictionary<string, double>
         {
             {"absolutely", BIncr},
             {"amazingly", BIncr},
@@ -101,7 +101,7 @@ namespace VaderSharp
             { "sort-of", BDecr}
         };
 
-        private static readonly Dictionary<string, double> SpecialCaseIdioms = new Dictionary<string, double>
+        public static readonly Dictionary<string, double> SpecialCaseIdioms = new Dictionary<string, double>
         {
             {"the shit", 3},
             { "the bomb", 3},

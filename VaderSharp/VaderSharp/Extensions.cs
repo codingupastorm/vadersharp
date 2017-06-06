@@ -16,5 +16,15 @@ namespace VaderSharp
         {
             return !word.Any(char.IsLower);
         }
+
+        /// <summary>
+        /// Removes punctuation from word
+        /// </summary>
+        /// <param name="word"></param>
+        /// <returns></returns>
+        public static string RemovePunctuation(this string word)
+        {
+            return new string(word.Where(c => !char.IsPunctuation(c)).ToArray());
+        }
     }
 }

@@ -19,8 +19,18 @@ namespace VaderSharp
             IsCapDifferential = SentimentUtils.AllCapDifferential(WordsAndEmoticons);
         }
 
+
+        /// <summary>
+        /// Returns mapping of the form {'cat,': 'cat'}, {',cat': 'cat'}
+        /// </summary>
+        /// <returns></returns>
         private Dictionary<string, string> WordsPlusPunc()
         {
+            string noPuncText = Text.RemovePunctuation();
+            string[] wordsOnly = noPuncText.Split().Where(x=>x.Length > 1).ToArray();
+
+            //for each word in wordsOnly, get each possible variant of punclist before/after
+
             throw new NotImplementedException();
         }
 
