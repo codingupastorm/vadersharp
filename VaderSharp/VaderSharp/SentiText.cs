@@ -27,11 +27,20 @@ namespace VaderSharp
         private Dictionary<string, string> WordsPlusPunc()
         {
             string noPuncText = Text.RemovePunctuation();
-            string[] wordsOnly = noPuncText.Split().Where(x=>x.Length > 1).ToArray();
+            var wordsOnly = noPuncText.Split().Where(x=>x.Length > 1);
 
             //for each word in wordsOnly, get each possible variant of punclist before/after
-
-            throw new NotImplementedException();
+            //Seems poor. Maybe I can improve in future.
+            Dictionary<string,string> puncDic = new Dictionary<string, string>();
+            foreach (var word in wordsOnly)
+            {
+                foreach (var punc in SentimentUtils.PuncList)
+                {
+                    puncDic.Add(word + punc, word);
+                    puncDic.Add(punc + word, word);
+                }
+            }
+            return puncDic;
         }
 
 
@@ -41,9 +50,15 @@ namespace VaderSharp
         /// <returns></returns>
         private IList<string> GetWordsAndEmoticons()
         {
-            IList<string> wes = Text.Split();
+            IList<string> wes = Text.Split().Where(x=> x.Length > 1).ToList();
             Dictionary<string,string> wordsPuncDic = WordsPlusPunc();
-            throw new NotImplementedException();
+            for (int i = 0; i < wes.Count; i++)
+            {
+                if (wordsPuncDic.ContainsKey(wes[i]))
+                    wes[i] = wordsPuncDic[wes[i]];
+            }
+
+            return wes;
         }
 
     }
