@@ -7,9 +7,9 @@ namespace VaderSharp
 {
     internal class SentiText
     {
-        private string Text { get; set; }
-        private IList<string> WordsAndEmoticons { get; set; }
-        private bool IsCapDifferential { get; set; }
+        private string Text { get; }
+        private IList<string> WordsAndEmoticons { get; }
+        private bool IsCapDifferential { get; }
 
         public SentiText(string text)
         {
