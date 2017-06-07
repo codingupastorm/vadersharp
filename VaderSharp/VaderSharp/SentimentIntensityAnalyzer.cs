@@ -81,7 +81,7 @@ namespace VaderSharp
             return QuesIncrLarge;
         }
 
-        private SiftSentiments siftSentimentScores(IList<double> sentiments)
+        private SiftSentiments SiftSentimentScores(IList<double> sentiments)
         {
             SiftSentiments siftSentiments = new SiftSentiments();
 
@@ -117,6 +117,7 @@ namespace VaderSharp
             }
 
             double compound = SentimentUtils.Normalize(sum);
+            SiftSentiments sifted = SiftSentimentScores(sentiments);
             throw new NotImplementedException();
         }
 
