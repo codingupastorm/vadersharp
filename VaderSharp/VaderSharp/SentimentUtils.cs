@@ -121,7 +121,7 @@ namespace VaderSharp
         /// <param name="inputWords"></param>
         /// <param name="includenT"></param>
         /// <returns></returns>
-        public static bool Negated(IList<string> inputWords, bool includenT)
+        public static bool Negated(IList<string> inputWords, bool includenT = true)
         {
             foreach (var word in Negate)
             {

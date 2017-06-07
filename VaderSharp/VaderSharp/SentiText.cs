@@ -8,8 +8,8 @@ namespace VaderSharp
     internal class SentiText
     {
         private string Text { get; }
-        private IList<string> WordsAndEmoticons { get; }
-        private bool IsCapDifferential { get; }
+        public IList<string> WordsAndEmoticons { get; }
+        public bool IsCapDifferential { get; }
 
         public SentiText(string text)
         {
