@@ -1,8 +1,7 @@
-# vadersharp
-Sentiment analysis using VADER with C#
+# VaderSharp - Sentiment analysis with C#
 
 "VADER (Valence Aware Dictionary and sEntiment Reasoner) is a lexicon and rule-based sentiment analysis tool that is specifically attuned to sentiments expressed in social media."
 
-Previously this package was only available in python. I wanted to use it in C# - Voila!
+Previously VADER was only available in python (https://github.com/cjhutto/vaderSentiment). I wanted to use it in C# so ported it over.
 
 NuGet coming soon
