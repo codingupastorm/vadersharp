@@ -95,10 +95,19 @@ namespace VaderSharp
                         s = s * 0.9;
                     valence = valence + s;
                     //TODO: Finish from here 
-                    
+                    valence = NeverCheck(valence, wordsAndEmoticons, startI, i);
+
+
+                    if (startI == 2)
+                    {
+                        valence = IdiomsCheck(valence, wordsAndEmoticons, i);
+                    }
+
                 }
             }
 
+            valence = LeastCheck(valence, wordsAndEmoticons, i);
+            sentiments.Add(valence);
             return sentiments;
         }
 
@@ -130,10 +139,23 @@ namespace VaderSharp
             return sentiments;
         }
 
-        private double LeastCheck(double valence)
+        private double LeastCheck(double valence, IList<string> wordsAndEmoticons, int i)
         {
+            if (i > 1 && !Lexicon.ContainsKey(wordsAndEmoticons[i - 1].ToLower()) &&
+                wordsAndEmoticons[i - 1].ToLower() == "least")
+            {
+                if (wordsAndEmoticons[i - 2].ToLower() != "at" && wordsAndEmoticons[i - 2].ToLower() != "very")
+                {
+                    valence = valence * SentimentUtils.NScalar;
+                }
+            }
+            else if (i > 0 && !Lexicon.ContainsKey(wordsAndEmoticons[i-1].ToLower()) 
+                && wordsAndEmoticons[i - 1].ToLower() == "least")
+            {
+                valence = valence * SentimentUtils.NScalar;
+            }
+
             return valence;
-            throw new NotImplementedException();
         }
 
         private double NeverCheck(double valence, IList<string> wordsAndEmoticons, int startI, int i)
@@ -143,8 +165,80 @@ namespace VaderSharp
                 if (SentimentUtils.Negated(new List<string> {wordsAndEmoticons[i - 1]}))
                     valence = valence * SentimentUtils.NScalar;
             }
+            if (startI == 1)
+            {
+                if (wordsAndEmoticons[i - 2] == "never" &&
+                    (wordsAndEmoticons[i - 1] == "so" || wordsAndEmoticons[i - 1] == "this"))
+                {
+                    valence = valence * 1.5;
+                }
+                else if (SentimentUtils.Negated(new List<string> {wordsAndEmoticons[i - (startI + 1)]}))
+                {
+                    valence = valence * SentimentUtils.NScalar;
+                }
+            }
+            if (startI == 2)
+            {
+                if (wordsAndEmoticons[i - 3] == "never"
+                    && (wordsAndEmoticons[i - 2] == "so" || wordsAndEmoticons[i - 2] == "this")
+                    || (wordsAndEmoticons[i - 1] == "so" || wordsAndEmoticons[i - 1] == "this"))
+                {
+                    valence = valence * 1.25;
+                }
+                else if (SentimentUtils.Negated(new List<string> { wordsAndEmoticons[i - (startI + 1)] }))
+                {
+                    valence = valence * SentimentUtils.NScalar;
+                }
+            }
 
+            return valence;
+        }
 
+        private double IdiomsCheck(double valence, IList<string> wordsAndEmoticons, int i)
+        {
+            string oneZero = String.Format("{0} {1}", wordsAndEmoticons[i - 1], wordsAndEmoticons[i]);
+
+            string twoOneZero = String.Format("{0} {1} {2}", wordsAndEmoticons[i-2], wordsAndEmoticons[i-1], wordsAndEmoticons[i]);
+
+            string twoOne = String.Format("{0} {1}", wordsAndEmoticons[i - 2], wordsAndEmoticons[i - 1]);
+
+            string threeTwoOne = String.Format("{0} {1} {2}", wordsAndEmoticons[i - 3], wordsAndEmoticons[i - 2],
+                wordsAndEmoticons[i - 1]);
+
+            string threeTwo = String.Format("{0} {1}", wordsAndEmoticons[i - 3], wordsAndEmoticons[i - 2]);
+
+            string[] sequences = new String[] {oneZero, twoOneZero, twoOne, threeTwoOne, threeTwo};
+
+            foreach (var seq in sequences)
+            {
+                if (SentimentUtils.SpecialCaseIdioms.ContainsKey(seq))
+                {
+                    valence = SentimentUtils.SpecialCaseIdioms[seq];
+                    break;
+                }
+            }
+
+            if (wordsAndEmoticons.Count - 1 > i)
+            {
+                string zeroOne = String.Format("{0} {1}", wordsAndEmoticons[i], wordsAndEmoticons[i + 1]);
+                if (SentimentUtils.SpecialCaseIdioms.ContainsKey(zeroOne))
+                {
+                    valence = SentimentUtils.SpecialCaseIdioms[zeroOne];
+                }
+            }
+            if (wordsAndEmoticons.Count - 1 > i + 1)
+            {
+                string zeroOneTwo = String.Format("{0} {1} {2}", wordsAndEmoticons[i], wordsAndEmoticons[i + 1],
+                    wordsAndEmoticons[i + 2]);
+                if (SentimentUtils.SpecialCaseIdioms.ContainsKey(zeroOneTwo))
+                {
+                    valence = SentimentUtils.SpecialCaseIdioms[zeroOneTwo];
+                }
+            }
+            if (SentimentUtils.BoosterDict.ContainsKey(threeTwo) || SentimentUtils.BoosterDict.ContainsKey(twoOne))
+            {
+                valence += SentimentUtils.BDecr;
+            }
             return valence;
         }
 
