@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VaderSharp", "VaderSharp\VaderSharp.csproj", "{8216CD49-1D2E-4F93-A69E-6BF4006247B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VaderSharpTests", "VaderSharpTests\VaderSharpTests.csproj", "{6FE1DF7B-B788-4857-9A10-7D52EEDAE7F7}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VaderSharpTestCore", "VaderSharpTestCore\VaderSharpTestCore.csproj", "{4F46C368-5EEE-4D24-80FE-BDB555F7C01E}"
 EndProject
 Global
@@ -19,10 +17,6 @@ Global
 		{8216CD49-1D2E-4F93-A69E-6BF4006247B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8216CD49-1D2E-4F93-A69E-6BF4006247B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8216CD49-1D2E-4F93-A69E-6BF4006247B6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6FE1DF7B-B788-4857-9A10-7D52EEDAE7F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6FE1DF7B-B788-4857-9A10-7D52EEDAE7F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6FE1DF7B-B788-4857-9A10-7D52EEDAE7F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6FE1DF7B-B788-4857-9A10-7D52EEDAE7F7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4F46C368-5EEE-4D24-80FE-BDB555F7C01E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4F46C368-5EEE-4D24-80FE-BDB555F7C01E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F46C368-5EEE-4D24-80FE-BDB555F7C01E}.Release|Any CPU.ActiveCfg = Release|Any CPU
