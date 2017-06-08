@@ -94,9 +94,8 @@ namespace VaderSharp
                     if (startI == 2 && s != 0)
                         s = s * 0.9;
                     valence = valence + s;
-                    //TODO: Finish from here 
-                    valence = NeverCheck(valence, wordsAndEmoticons, startI, i);
 
+                    valence = NeverCheck(valence, wordsAndEmoticons, startI, i);
 
                     if (startI == 2)
                     {
