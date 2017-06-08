@@ -33,7 +33,7 @@ namespace VaderSharp
         }
 
         /// <summary>
-        /// Return a float for sentiment strength based on the input text.
+        /// Return metrics for positive, negative and neutral sentiment based on the input text.
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
@@ -313,7 +313,7 @@ namespace VaderSharp
             }
             else if (sifted.PosSum < Math.Abs(sifted.NegSum))
             {
-                sifted.NegSum -= sifted.NegSum;
+                sifted.NegSum -= puncAmplifier;
             }
 
             double total = sifted.PosSum + Math.Abs(sifted.NegSum) + sifted.NeuCount;

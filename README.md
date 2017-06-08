@@ -1,4 +1,4 @@
-# VaderSharp. The best sentiment analysis tool. Now available in C#
+# VaderSharp. The best sentiment analysis tool. In C#.
 
 "VADER (Valence Aware Dictionary and sEntiment Reasoner) is a lexicon and rule-based sentiment analysis tool that is specifically attuned to sentiments expressed in social media."
 
