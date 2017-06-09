@@ -4,4 +4,27 @@
 
 Previously VADER was only available in python (https://github.com/cjhutto/vaderSentiment). I wanted to use it in C# so ported it over.
 
-NuGet coming soon
+# Getting Started
+
+To install VaderSharp, run the following command in the Package Manager Console:
+
+```
+Install-Package CodingUpAStorm.VaderSharp
+```
+
+# Usage
+
+Import the package at the top of the page:
+
+```c#
+using CodingUpAStorm.VaderSharp;
+```
+
+Then just initialize an instance of SentimentIntensityAnalyzer and call it's PolarityScores method:
+
+```c#
+SentimentIntensityAnalyzer analyzer = new SentimentIntensityAnalyzer();
+
+var results = analyzer.PolarityScores("Wow, this package is amazingly easy to use");
+
+```
