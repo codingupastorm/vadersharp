@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>CodingUpAStorm.VaderSharp</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>codingupastorm</authors>
+    <owners>codingupastorm</owners>
+    <projectUrl>https://github.com/codingupastorm/vadersharp</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Sentiment analysis with C# using the VADER algorithm.</description>
+    <releaseNotes>First release.</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>sentiment analysis vader valence text algorithm</tags>
+  </metadata>
+  <files>
+	  <file src="vader_lexicon.txt" target="" />
+  </files>
+</package>

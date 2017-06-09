@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using VaderSharp.Properties;
 
 namespace VaderSharp
 {
@@ -15,9 +16,9 @@ namespace VaderSharp
         private Dictionary<string, double> Lexicon { get; set; }
         private string[] LexiconFullFile { get; set; }
 
-        public SentimentIntensityAnalyzer(string filename = "vader_lexicon.txt")
+        public SentimentIntensityAnalyzer()
         {
-            LexiconFullFile = File.ReadAllLines(filename);
+            LexiconFullFile = Resources.VaderLexicon.Split('\n');
             Lexicon = MakeLexDic();
         }
 

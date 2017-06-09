@@ -17,7 +17,7 @@ Install-Package CodingUpAStorm.VaderSharp
 Import the package at the top of the page:
 
 ```c#
-using CodingUpAStorm.VaderSharp;
+using VaderSharp;
 ```
 
 Then just initialize an instance of SentimentIntensityAnalyzer and call it's PolarityScores method:
@@ -27,4 +27,8 @@ SentimentIntensityAnalyzer analyzer = new SentimentIntensityAnalyzer();
 
 var results = analyzer.PolarityScores("Wow, this package is amazingly easy to use");
 
+Console.WriteLine("Positive score: " + results.Positive);
+Console.WriteLine("Negative score: " + results.Negative);
+Console.WriteLine("Neutral score: " + results.Neutral);
+Console.WriteLine("Compound score: " + results.Compound);
 ```
