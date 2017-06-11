@@ -177,10 +177,7 @@ namespace VaderSharp
             }
 
             int capDifferential = words.Count - allCapWords;
-            if (capDifferential > 0 && capDifferential < words.Count)
-                return true;
-
-            return false;
+            return (capDifferential > 0 && capDifferential < words.Count);
         }
 
         /// <summary>
