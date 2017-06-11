@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace VaderSharp
 {
@@ -27,20 +28,20 @@ namespace VaderSharp
         private Dictionary<string, string> WordsPlusPunc()
         {
             string noPuncText = Text.RemovePunctuation();
-            var wordsOnly = noPuncText.Split().Where(x=>x.Length > 1);
+            var wordsOnly = Regex.Matches(noPuncText, "\\S{2,}");
 
             //for each word in wordsOnly, get each possible variant of punclist before/after
             //Seems poor. Maybe I can improve in future.
             Dictionary<string,string> puncDic = new Dictionary<string, string>();
-            foreach (var word in wordsOnly)
+            foreach (Match word in wordsOnly)
             {
                 foreach (var punc in SentimentUtils.PuncList)
                 {
                     if (puncDic.ContainsKey(word + punc))
                         continue;
 
-                    puncDic.Add(word + punc, word);
-                    puncDic.Add(punc + word, word);
+                    puncDic.Add(word + punc, word.Value);
+                    puncDic.Add(punc + word, word.Value);
                 }
             }
             return puncDic;
