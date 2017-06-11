@@ -158,13 +158,7 @@ namespace VaderSharp
         {
             double normScore = score / Math.Sqrt(score * score + alpha);
 
-            if (normScore < -1.0)
-                return -1.0;
-
-            if (normScore > 1.0)
-                return 1.0;
-
-            return normScore;
+            return (Math.Abs(normScore) > 1) ? Math.Sign(normScore) : normScore;
         }
 
         /// <summary>
