@@ -37,10 +37,10 @@ namespace VaderSharp
             {
                 foreach (var punc in SentimentUtils.PuncList)
                 {
-                    if (puncDic.ContainsKey(word + punc))
+                    if (puncDic.ContainsKey(word.Value + punc))
                         continue;
 
-                    puncDic.Add(word + punc, word.Value);
+                    puncDic.Add(word.Value + punc, word.Value);
                     puncDic.Add(punc + word, word.Value);
                 }
             }
