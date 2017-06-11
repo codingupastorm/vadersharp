@@ -202,7 +202,7 @@ namespace VaderSharp
             if (!BoosterDict.ContainsKey(wordLower))
                 return 0.0;
 
-            double scalar = BoosterDict[word];
+            double scalar = BoosterDict[wordLower];
             if (valence < 0)
                 scalar *= -1;
 
