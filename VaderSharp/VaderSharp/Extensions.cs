@@ -24,7 +24,7 @@ namespace VaderSharp
         /// <returns></returns>
         public static string RemovePunctuation(this string word)
         {
-            return new string(word.Where(c => !char.IsPunctuation(c)).ToArray());
+            return System.Text.RegularExpressions.Regex.Replace(word, "[^\\s\\w]", "");
         }
     }
 }
