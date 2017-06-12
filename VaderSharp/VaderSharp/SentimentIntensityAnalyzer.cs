@@ -73,7 +73,7 @@ namespace VaderSharp
             bool isCapDiff = sentiText.IsCapDifferential;
             IList<string> wordsAndEmoticons = sentiText.WordsAndEmoticons;
             valence = Lexicon[itemLowerCase];
-            if (item.IsUpper() && isCapDiff)
+            if (isCapDiff && item.IsUpper())
             {
                 if (valence > 0)
                 {
