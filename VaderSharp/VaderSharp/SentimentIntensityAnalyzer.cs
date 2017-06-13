@@ -1,26 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using VaderSharp.Properties;
 
 namespace VaderSharp
 {
+    using System.IO;
+    using System.Reflection;
+
+    /// <summary>
+    /// An abstraction to represent the sentiment intensity analyzer.
+    /// </summary>
     public class SentimentIntensityAnalyzer
     {
         private const double ExclIncr = 0.292;
         private const double QuesIncrSmall = 0.18;
         private const double QuesIncrLarge = 0.96;
 
-        private Dictionary<string, double> Lexicon { get; }
-        private string[] LexiconFullFile { get; }
+        private static Dictionary<string, double> Lexicon { get; }
+        private static string[] LexiconFullFile { get; }
 
-        public SentimentIntensityAnalyzer()
+        static SentimentIntensityAnalyzer()
         {
-            LexiconFullFile = Resources.VaderLexicon.Split('\n');
-            Lexicon = MakeLexDic();
+            Assembly assembly;
+#if NET_35
+            assembly = typeof(SentimentIntensityAnalyzer).Assembly;
+#else
+            assembly = typeof(SentimentIntensityAnalyzer).GetTypeInfo().Assembly;
+#endif
+            using (var stream = assembly.GetManifestResourceStream("VaderSharp.vader_lexicon.txt"))
+            using(var reader = new StreamReader(stream))
+            {
+                LexiconFullFile = reader.ReadToEnd().Split('\n');
+                Lexicon = MakeLexDic();
+            }
         }
 
-        private Dictionary<string,double> MakeLexDic()
+        private static Dictionary<string,double> MakeLexDic()
         {
             var dic = new Dictionary<string, double>();
             foreach (var line in LexiconFullFile)
