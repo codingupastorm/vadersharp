@@ -296,14 +296,7 @@ namespace VaderSharp
             double sum = sentiments.Sum();
             double puncAmplifier = PunctuationEmphasis(text);
 
-            if (sum > 0)
-            {
-                sum += puncAmplifier;
-            }
-            else if (sum < 0)
-            {
-                sum -= puncAmplifier;
-            }
+            sum += Math.Sign(sum) * puncAmplifier;
 
             double compound = SentimentUtils.Normalize(sum);
             SiftSentiments sifted = SiftSentimentScores(sentiments);
