@@ -21,7 +21,7 @@
         public double Positive { get; set; }
         
         /// <summary>
-        /// Compound
+        /// Normalized sentiment score between -1 and 1.
         /// </summary>
         public double Compound { get; set; }
     }
