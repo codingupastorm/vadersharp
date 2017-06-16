@@ -6,17 +6,17 @@
     public class SentimentAnalysisResults
     {
         /// <summary>
-        /// Negative
+        /// The proportion of words in the sentence with negative valence.
         /// </summary>
         public double Negative { get; set; }
-        
+
         /// <summary>
-        /// Neutral
+        /// The proportion of words in the sentence with no valence.
         /// </summary>
         public double Neutral { get; set; }
-        
+
         /// <summary>
-        /// Positive
+        /// The proportion of words in the sentence with positive valence.
         /// </summary>
         public double Positive { get; set; }
         
