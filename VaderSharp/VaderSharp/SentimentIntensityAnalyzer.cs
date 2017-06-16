@@ -1,28 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using VaderSharp.Properties;
 
 namespace VaderSharp
 {
+    using System.IO;
+    using System.Reflection;
+
+    /// <summary>
+    /// An abstraction to represent the sentiment intensity analyzer.
+    /// </summary>
     public class SentimentIntensityAnalyzer
     {
         private const double ExclIncr = 0.292;
         private const double QuesIncrSmall = 0.18;
         private const double QuesIncrLarge = 0.96;
 
-        private Dictionary<string, double> Lexicon { get; set; }
-        private string[] LexiconFullFile { get; set; }
+        private static Dictionary<string, double> Lexicon { get; }
+        private static string[] LexiconFullFile { get; }
 
-        public SentimentIntensityAnalyzer()
+        static SentimentIntensityAnalyzer()
         {
-            LexiconFullFile = Resources.VaderLexicon.Split('\n');
-            Lexicon = MakeLexDic();
+            Assembly assembly;
+#if NET_35
+            assembly = typeof(SentimentIntensityAnalyzer).Assembly;
+#else
+            assembly = typeof(SentimentIntensityAnalyzer).GetTypeInfo().Assembly;
+#endif
+            using (var stream = assembly.GetManifestResourceStream("VaderSharp.vader_lexicon.txt"))
+            using(var reader = new StreamReader(stream))
+            {
+                LexiconFullFile = reader.ReadToEnd().Split('\n');
+                Lexicon = MakeLexDic();
+            }
         }
 
-        private Dictionary<string,double> MakeLexDic()
+        private static Dictionary<string,double> MakeLexDic()
         {
             var dic = new Dictionary<string, double>();
             foreach (var line in LexiconFullFile)
@@ -196,18 +209,13 @@ namespace VaderSharp
 
         private double IdiomsCheck(double valence, IList<string> wordsAndEmoticons, int i)
         {
-            string oneZero = String.Format("{0} {1}", wordsAndEmoticons[i - 1], wordsAndEmoticons[i]);
-
-            string twoOneZero = String.Format("{0} {1} {2}", wordsAndEmoticons[i-2], wordsAndEmoticons[i-1], wordsAndEmoticons[i]);
-
-            string twoOne = String.Format("{0} {1}", wordsAndEmoticons[i - 2], wordsAndEmoticons[i - 1]);
-
-            string threeTwoOne = String.Format("{0} {1} {2}", wordsAndEmoticons[i - 3], wordsAndEmoticons[i - 2],
-                wordsAndEmoticons[i - 1]);
-
-            string threeTwo = String.Format("{0} {1}", wordsAndEmoticons[i - 3], wordsAndEmoticons[i - 2]);
-
-            string[] sequences = new String[] {oneZero, twoOneZero, twoOne, threeTwoOne, threeTwo};
+            var oneZero = string.Concat(wordsAndEmoticons[i - 1], " ", wordsAndEmoticons[i]);
+            var twoOneZero = string.Concat(wordsAndEmoticons[i - 2], " ", wordsAndEmoticons[i - 1], " ", wordsAndEmoticons[i]);
+            var twoOne = string.Concat(wordsAndEmoticons[i - 2], " ", wordsAndEmoticons[i - 1]);
+            var threeTwoOne = string.Concat(wordsAndEmoticons[i - 3], " ", wordsAndEmoticons[i - 2], " ", wordsAndEmoticons[i - 1]);
+            var threeTwo = string.Concat(wordsAndEmoticons[i - 3], " ", wordsAndEmoticons[i - 2]);
+            
+            string[] sequences = {oneZero, twoOneZero, twoOne, threeTwoOne, threeTwo};
 
             foreach (var seq in sequences)
             {
@@ -220,7 +228,7 @@ namespace VaderSharp
 
             if (wordsAndEmoticons.Count - 1 > i)
             {
-                string zeroOne = String.Format("{0} {1}", wordsAndEmoticons[i], wordsAndEmoticons[i + 1]);
+                string zeroOne = string.Concat(wordsAndEmoticons[i], " ", wordsAndEmoticons[i + 1]);
                 if (SentimentUtils.SpecialCaseIdioms.ContainsKey(zeroOne))
                 {
                     valence = SentimentUtils.SpecialCaseIdioms[zeroOne];
@@ -228,8 +236,7 @@ namespace VaderSharp
             }
             if (wordsAndEmoticons.Count - 1 > i + 1)
             {
-                string zeroOneTwo = String.Format("{0} {1} {2}", wordsAndEmoticons[i], wordsAndEmoticons[i + 1],
-                    wordsAndEmoticons[i + 2]);
+                string zeroOneTwo = string.Concat(wordsAndEmoticons[i], " ", wordsAndEmoticons[i + 1], " ", wordsAndEmoticons[i + 2]);
                 if (SentimentUtils.SpecialCaseIdioms.ContainsKey(zeroOneTwo))
                 {
                     valence = SentimentUtils.SpecialCaseIdioms[zeroOneTwo];
@@ -257,7 +264,7 @@ namespace VaderSharp
             return epCount * ExclIncr;
         }
 
-        private double AmplifyQuestion(string text)
+        private static double AmplifyQuestion(string text)
         {
             int qmCount = text.Count(x => x == '?');
 
@@ -270,7 +277,7 @@ namespace VaderSharp
             return QuesIncrLarge;
         }
 
-        private SiftSentiments SiftSentimentScores(IList<double> sentiments)
+        private static SiftSentiments SiftSentimentScores(IList<double> sentiments)
         {
             SiftSentiments siftSentiments = new SiftSentiments();
 

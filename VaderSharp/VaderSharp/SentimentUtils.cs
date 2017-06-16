@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace VaderSharp
 {
@@ -13,13 +12,13 @@ namespace VaderSharp
         public const double CIncr = 0.733;
         public const double NScalar = -0.74;
 
-        public static readonly string[] PuncList = new string[]
+        public static readonly string[] PuncList = 
         {
             ".", "!", "?", ",", ";", ":", "-", "'", "\"","!!", "!!!",
             "??", "???", "?!?", "!?!", "?!?!", "!?!?"
         };
 
-        public static readonly string[] Negate = new string[]
+        public static readonly string[] Negate = 
         {
             "aint", "arent", "cannot", "cant", "couldnt", "darent", "didnt", "doesnt",
             "ain't", "aren't", "can't", "couldn't", "daren't", "didn't", "doesn't",
