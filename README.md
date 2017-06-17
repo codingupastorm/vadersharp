@@ -6,7 +6,12 @@ Previously VADER was only available in python (https://github.com/cjhutto/vaderS
 
 # Getting Started
 
-VaderSharp is built on .NET Standard v1.6. As such it should work across any variant of the .NET framework, as long as you're running the most up-to-date version.
+VaderSharp supports:
+
+- .NET Core
+- .NET Framework 3.5 and above
+- Mono & Xamarin
+- UWP
 
 To install VaderSharp, run the following command in the Package Manager Console:
 
