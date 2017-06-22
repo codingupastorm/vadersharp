@@ -20,8 +20,7 @@ namespace VaderSharp
 
         public string[] Negations { get; private set; }
 
-        private Dictionary<string, double> specialCaseIdioms;
-        public Dictionary<string, double> SpecialCaseIdioms { get { return specialCaseIdioms; } }
+        public Dictionary<string, double> SpecialCaseIdioms { get; private set; }
 
         private ConfigStore(string languageCode)
         {
@@ -77,13 +76,13 @@ namespace VaderSharp
         /// <param name="root">Root element of XML document</param>
         private void LoadIdioms(XElement root)
         {
-            specialCaseIdioms = new Dictionary<string, double>();
+            SpecialCaseIdioms = new Dictionary<string, double>();
             var nodes = root.Descendants(XName.Get("idiom"));
             double value;
             foreach (var n in nodes)
             {
                 value = double.Parse(n.Attribute(XName.Get("value")).Value);
-                specialCaseIdioms.Add(n.Value, value);
+                SpecialCaseIdioms.Add(n.Value, value);
             }
         }
 
