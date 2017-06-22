@@ -5,16 +5,20 @@ using System.Xml.Linq;
 
 namespace VaderSharp
 {
+
+    /// <summary>
+    /// Proof of concept for loading the words to be used as boosters, negations etc.
+    /// 
+    /// Currently not used.
+    /// </summary>
     public class ConfigStore
     {
 
         private static ConfigStore config;
 
-        private Dictionary<string, double> boosterDict;
-        public Dictionary<string, double> BoosterDict { get { return boosterDict; } }
+        public Dictionary<string, double> BoosterDict { get; private set; }
 
-        private string[] negations;
-        public string[] Negations { get { return negations; } }
+        public string[] Negations { get; private set; }
 
         private Dictionary<string, double> specialCaseIdioms;
         public Dictionary<string, double> SpecialCaseIdioms { get { return specialCaseIdioms; } }
@@ -60,10 +64,10 @@ namespace VaderSharp
         {
             var nodes = root.Descendants(XName.Get("negation"));
             int length = nodes.Count();
-            negations = new string[length];
+            Negations = new string[length];
             for (int i = 0; i < length; i++)
             {
-                negations[i] = nodes.ElementAt(i).Value;
+                Negations[i] = nodes.ElementAt(i).Value;
             }
         }
 
@@ -89,13 +93,13 @@ namespace VaderSharp
         /// <param name="root">Root element of XML document</param>
         private void LoadBooster(XElement root)
         {
-            boosterDict = new Dictionary<string, double>();
+            BoosterDict = new Dictionary<string, double>();
             var nodes = root.Descendants(XName.Get("booster"));
             double sign;
             foreach (var n in nodes)
             {
                 sign = n.Attribute(XName.Get("sign")).Value == "BIncr" ? 0.293 : -0.293;
-                boosterDict.Add(n.Value, sign);
+                BoosterDict.Add(n.Value, sign);
             }
         }
     }
