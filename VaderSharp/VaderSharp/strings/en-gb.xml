@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<strings>
+  <booster-words>
+    <booster sign="BIncr">absolutely</booster>
+    <booster sign="BIncr">amazingly</booster>
+    <booster sign="BIncr">awfully</booster>
+    <booster sign="BIncr">completely</booster>
+    <booster sign="BIncr">considerably</booster>
+    <booster sign="BIncr">decidedly</booster>
+    <booster sign="BIncr">deeply</booster>
+    <booster sign="BIncr">effing</booster>
+    <booster sign="BIncr">enormously</booster>
+    <booster sign="BIncr">entirely</booster>
+    <booster sign="BIncr">especially</booster>
+    <booster sign="BIncr">exceptionally</booster>
+    <booster sign="BIncr">extremely</booster>
+    <booster sign="BIncr">fabulously</booster>
+    <booster sign="BIncr">flipping</booster>
+    <booster sign="BIncr">flippin</booster>
+    <booster sign="BIncr">fricking</booster>
+    <booster sign="BIncr">frickin</booster>
+    <booster sign="BIncr">frigging</booster>
+    <booster sign="BIncr">friggin</booster>
+    <booster sign="BIncr">fully</booster>
+    <booster sign="BIncr">fucking</booster>
+    <booster sign="BIncr">greatly</booster>
+    <booster sign="BIncr">hella</booster>
+    <booster sign="BIncr">highly</booster>
+    <booster sign="BIncr">hugely</booster>
+    <booster sign="BIncr">incredibly</booster>
+    <booster sign="BIncr">intensely</booster>
+    <booster sign="BIncr">majorly</booster>
+    <booster sign="BIncr">more</booster>
+    <booster sign="BIncr">most</booster>
+    <booster sign="BIncr">particularly</booster>
+    <booster sign="BIncr">purely</booster>
+    <booster sign="BIncr">quite</booster>
+    <booster sign="BIncr">really</booster>
+    <booster sign="BIncr">remarkably</booster>
+    <booster sign="BIncr">so</booster>
+    <booster sign="BIncr">substantially</booster>
+    <booster sign="BIncr">thoroughly</booster>
+    <booster sign="BIncr">totally</booster>
+    <booster sign="BIncr">tremendously</booster>
+    <booster sign="BIncr">uber</booster>
+    <booster sign="BIncr">unbelievably</booster>
+    <booster sign="BIncr">unusually</booster>
+    <booster sign="BIncr">utterly</booster>
+    <booster sign="BIncr">very</booster>
+    <booster sign="BDecr">almost</booster>
+    <booster sign="BDecr">barely</booster>
+    <booster sign="BDecr">hardly</booster>
+    <booster sign="BDecr">just enough</booster>
+    <booster sign="BDecr">kind of</booster>
+    <booster sign="BDecr">kinda</booster>
+    <booster sign="BDecr">kindof</booster>
+    <booster sign="BDecr">kind-of</booster>
+    <booster sign="BDecr">less</booster>
+    <booster sign="BDecr">little</booster>
+    <booster sign="BDecr">marginally</booster>
+    <booster sign="BDecr">occasionally</booster>
+    <booster sign="BDecr">partly</booster>
+    <booster sign="BDecr">scarcely</booster>
+    <booster sign="BDecr">slightly</booster>
+    <booster sign="BDecr">somewhat</booster>
+    <booster sign="BDecr">sort of</booster>
+    <booster sign="BDecr">sorta</booster>
+    <booster sign="BDecr">sortof</booster>
+    <booster sign="BDecr">sort-of</booster>
+  </booster-words>
+  <negations>
+    <negation>aint</negation>
+    <negation>arent</negation>
+    <negation>cannot</negation>
+    <negation>cant</negation>
+    <negation>couldnt</negation>
+    <negation>darent</negation>
+    <negation>didnt</negation>
+    <negation>doesnt</negation>
+    <negation>ain't</negation>
+    <negation>aren't</negation>
+    <negation>can't</negation>
+    <negation>couldn't</negation>
+    <negation>daren't</negation>
+    <negation>didn't</negation>
+    <negation>doesn't</negation>
+    <negation>dont</negation>
+    <negation>hadnt</negation>
+    <negation>hasnt</negation>
+    <negation>havent</negation>
+    <negation>isnt</negation>
+    <negation>mightnt</negation>
+    <negation>mustnt</negation>
+    <negation>neither</negation>
+    <negation>don't</negation>
+    <negation>hadn't</negation>
+    <negation>hasn't</negation>
+    <negation>haven't</negation>
+    <negation>isn't</negation>
+    <negation>mightn't</negation>
+    <negation>mustn't</negation>
+    <negation>neednt</negation>
+    <negation>needn't</negation>
+    <negation>never</negation>
+    <negation>none</negation>
+    <negation>nope</negation>
+    <negation>nor</negation>
+    <negation>not</negation>
+    <negation>nothing</negation>
+    <negation>nowhere</negation>
+    <negation>oughtnt</negation>
+    <negation>shant</negation>
+    <negation>shouldnt</negation>
+    <negation>uhuh</negation>
+    <negation>wasnt</negation>
+    <negation>werent</negation>
+    <negation>oughtn't</negation>
+    <negation>shan't</negation>
+    <negation>shouldn't</negation>
+    <negation>uh-uh</negation>
+    <negation>wasn't</negation>
+    <negation>weren't</negation>
+    <negation>without</negation>
+    <negation>wont</negation>
+    <negation>wouldnt</negation>
+    <negation>won't</negation>
+    <negation>wouldn't</negation>
+    <negation>rarely</negation>
+    <negation>seldom</negation>
+    <negation>despite</negation>
+  </negations>
+  <special-case-idioms>
+    <idiom value="3">the shit</idiom>
+    <idiom value="3">the bomb</idiom>
+    <idiom value="1.5">bad ass</idiom>
+    <idiom value="-2">yeah right</idiom>
+    <idiom value="2">cut the mustard</idiom>
+    <idiom value="-1.5">kiss of death</idiom>
+    <idiom value="-2">hand to mouth</idiom>
+  </special-case-idioms>
+</strings>
