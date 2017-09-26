@@ -16,26 +16,47 @@ namespace VaderSharp
         private const double QuesIncrSmall = 0.18;
         private const double QuesIncrLarge = 0.96;
 
-        private static Dictionary<string, double> Lexicon { get; }
-        private static string[] LexiconFullFile { get; }
+        private Dictionary<string, double> Lexicon = null;
+        private string[] LexiconFullFile = null;
 
-        static SentimentIntensityAnalyzer()
+        public SentimentIntensityAnalyzer()
         {
-            Assembly assembly;
+            if (Lexicon == null)
+            {
+                Assembly assembly;
 #if NET_35
             assembly = typeof(SentimentIntensityAnalyzer).Assembly;
 #else
-            assembly = typeof(SentimentIntensityAnalyzer).GetTypeInfo().Assembly;
+                assembly = typeof(SentimentIntensityAnalyzer).GetTypeInfo().Assembly;
 #endif
-            using (var stream = assembly.GetManifestResourceStream("VaderSharp.vader_lexicon.txt"))
-            using(var reader = new StreamReader(stream))
-            {
-                LexiconFullFile = reader.ReadToEnd().Split('\n');
-                Lexicon = MakeLexDic();
+                using (var stream = assembly.GetManifestResourceStream("VaderSharp.vader_lexicon.txt"))
+                using (var reader = new StreamReader(stream))
+                {
+                    LexiconFullFile = reader.ReadToEnd().Split('\n');
+                    Lexicon = MakeLexDic();
+                }
             }
         }
 
-        private static Dictionary<string,double> MakeLexDic()
+        public SentimentIntensityAnalyzer(string fileName)
+        {
+            if (Lexicon == null)
+            {
+                if (!File.Exists(fileName))
+                {
+                    throw new Exception("Lexicon file not found");
+                }
+
+                using (var stream = new FileStream(fileName, FileMode.Open))
+                using (var reader = new StreamReader(stream))
+                {
+                    LexiconFullFile = reader.ReadToEnd().Split('\n');
+                    Lexicon = MakeLexDic();
+                }
+            }
+        }
+
+        private Dictionary<string,double> MakeLexDic()
         {
             var dic = new Dictionary<string, double>();
             foreach (var line in LexiconFullFile)
