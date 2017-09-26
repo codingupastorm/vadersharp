@@ -62,7 +62,7 @@ namespace VaderSharp
             foreach (var line in LexiconFullFile)
             {
                 var lineArray = line.Trim().Split('\t');
-                dic.Add(lineArray[0], Double.Parse(lineArray[1]));
+                dic.Add(lineArray[0], Double.Parse(lineArray[1], System.Globalization.CultureInfo.InvariantCulture));
             }
             return dic;
         }
