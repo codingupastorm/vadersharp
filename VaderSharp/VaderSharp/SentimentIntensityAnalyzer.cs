@@ -175,7 +175,7 @@ namespace VaderSharp
         {
             if (startI == 0)
             {
-                if (SentimentUtils.Negated(new List<string> {wordsAndEmoticons[i - 1]}))
+                if (SentimentUtils.Negated(new List<string> {wordsAndEmoticons[i - 1].ToLower()}))
                     valence = valence * SentimentUtils.NScalar;
             }
             if (startI == 1)
@@ -185,7 +185,7 @@ namespace VaderSharp
                 {
                     valence = valence * 1.5;
                 }
-                else if (SentimentUtils.Negated(new List<string> {wordsAndEmoticons[i - (startI + 1)]}))
+                else if (SentimentUtils.Negated(new List<string> {wordsAndEmoticons[i - (startI + 1)].ToLower()}))
                 {
                     valence = valence * SentimentUtils.NScalar;
                 }
@@ -198,7 +198,7 @@ namespace VaderSharp
                 {
                     valence = valence * 1.25;
                 }
-                else if (SentimentUtils.Negated(new List<string> { wordsAndEmoticons[i - (startI + 1)] }))
+                else if (SentimentUtils.Negated(new List<string> { wordsAndEmoticons[i - (startI + 1)].ToLower() }))
                 {
                     valence = valence * SentimentUtils.NScalar;
                 }
